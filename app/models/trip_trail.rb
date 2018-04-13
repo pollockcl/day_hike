@@ -1,4 +1,4 @@
-class TripTrails < ApplicationRecord
+class TripTrail < ApplicationRecord
   belongs_to :trip
   belongs_to :trail
 end
