@@ -45,5 +45,17 @@ context 'as a visitor' do
 
       expect(page).to have_content(trip1.average_hiking_distance)
     end
+
+    scenario 'see longest and shortest hiking distance' do 
+      trip1 = Trip.create(name: 'Anakin', start_date: Time.now, end_date: Time.now)
+      trail1 = trip1.trails.create(name: 'Obi Wan', length: 21, address: 'Hello There')
+      trail2 = trip1.trails.create(name: 'Grevious', length: 29, address: 'A Bold One')
+      trail3 = trip1.trails.create(name: 'Vader', length: 29, address: 'Disturbing Faith')
+
+      visit trip_path(trip1)
+
+      expect(page).to have_content(trip1.shortest_hiking_distance)
+      expect(page).to have_content(trip1.longest_hiking_distance)
+    end
   end
 end
