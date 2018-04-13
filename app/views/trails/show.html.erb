@@ -5,3 +5,9 @@
 <% end %>
 
 <%= @trail.total_hikes %>
+<% @trail.trips.each do |trip| %>
+
+<%= trip.name %>
+<%= trip.start_date %>
+<%= trip.end_date %>
+<% end %>
