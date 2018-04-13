@@ -23,5 +23,27 @@ context 'as a visitor' do
       expect(page).to have_content(trail3.length)
       expect(page).to have_content(trail3.address)
     end
+
+    scenario 'see planned total hiking distance' do
+      trip1 = Trip.create(name: 'Anakin', start_date: Time.now, end_date: Time.now)
+      trail1 = trip1.trails.create(name: 'Obi Wan', length: 29, address: 'Hello There')
+      trail2 = trip1.trails.create(name: 'Grevious', length: 29, address: 'A Bold One')
+      trail3 = trip1.trails.create(name: 'Vader', length: 29, address: 'Disturbing Faith')
+
+      visit trip_path(trip1)
+
+      expect(page).to have_content(trip1.planned_total_hiking_distance)
+    end
+
+    scenario 'see average hiking distance' do 
+      trip1 = Trip.create(name: 'Anakin', start_date: Time.now, end_date: Time.now)
+      trail1 = trip1.trails.create(name: 'Obi Wan', length: 29, address: 'Hello There')
+      trail2 = trip1.trails.create(name: 'Grevious', length: 29, address: 'A Bold One')
+      trail3 = trip1.trails.create(name: 'Vader', length: 29, address: 'Disturbing Faith')
+
+      visit trip_path(trip1)
+
+      expect(page).to have_content(trip1.average_hiking_distance)
+    end
   end
 end
